@@ -10,6 +10,7 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -21,6 +22,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
     } catch (err) {
       console.log(err);
     }
@@ -82,10 +84,10 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar  
-      expanded={expanded} 
-      className={styles.NavBar} 
-      expand="md" 
+    <Navbar
+      expanded={expanded}
+      className={styles.NavBar}
+      expand="md"
       fixed="top"
     >
       <Container>
@@ -95,10 +97,10 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
         {currentUser && addPostIcon}
-        <Navbar.Toggle  
+        <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
-          aria-controls="basic-navbar-nav" 
+          aria-controls="basic-navbar-nav"
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
