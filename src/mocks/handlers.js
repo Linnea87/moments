@@ -1,3 +1,5 @@
+import { rest } from "msw";
+
 const baseURL = "https://lesson-drf-api-d1c8561611f2.herokuapp.com/";
 
 export const handlers = [
